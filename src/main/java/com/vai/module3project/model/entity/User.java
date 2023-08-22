@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class User{
     private long id;
     private String login;
+    private String email;
     private String password;
-    Character character;
+    Character[] character = new Character[5];
 }

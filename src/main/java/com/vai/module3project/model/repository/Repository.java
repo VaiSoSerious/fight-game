@@ -8,7 +8,8 @@ public interface Repository<T> {
 
     Optional<T> get(long id);
 
-    void creat(T entity);
+    void save(T entity);
 
-    boolean isExists(String login, String password);
+    long isExists(String login);
+    boolean isCorrectPassword(String password, long id);
 }

@@ -46,7 +46,7 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <form action="RegisterServlet" method="post">
+            <form action="registration" method="post">
                 <%--Поле ввода логина--%>
                 <div class="row">
                     <input id="loginInput" name="username" type="text" placeholder="Введите логин" required="">
@@ -54,7 +54,7 @@
                 <br>
                 <%--Поле ввода email--%>
                 <div class="row">
-                    <input id="emailInput" name="username" type="email" placeholder="Введите почту" required="">
+                    <input id="emailInput" name="email" type="email" placeholder="Введите почту" required="">
                 </div>
                 <br>
                 <%--Поле ввода пароля--%>

@@ -28,12 +28,17 @@ public class EnemyCharacterRepository implements Repository<Character>{
     }
 
     @Override
-    public void creat(Character entity) {
+    public void save(Character entity) {
         enemyCharacterRepository.put(id.incrementAndGet(),entity);
     }
 
     @Override
-    public boolean isExists(String login, String password) {
+    public long isExists(String login) {
+        return -1L;
+    }
+
+    @Override
+    public boolean isCorrectPassword(String password, long id) {
         return false;
     }
 

@@ -4,11 +4,14 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface CRUDService<T> {
-    Collection<T> getAll();
+    Collection<T> getAllEntities();
 
-    Optional<T> get(long id);
+    Optional<T> getEntity(long id);
 
-    void creat(T t);
+    void saveEntity(T t);
 
-    boolean isExists(String login, String password);
+    long isEntityExist(String login);
+
+
+    boolean isCorrectPassword(String password, long id);
 }

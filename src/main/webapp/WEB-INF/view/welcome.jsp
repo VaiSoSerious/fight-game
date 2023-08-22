@@ -64,7 +64,7 @@
                 </div>
             </form>
             <%--Кнопка регистрации--%>
-            <form action="registration" method="get">
+            <form action="preregistration" method="get">
                 <div class="row">
                     <button id="regButton" name="singlebutton" class="btn btn-primary">Регистрация</button>
                 </div>

@@ -14,8 +14,10 @@ public class UserRepository implements Repository<User>{
     public static final AtomicLong id = new AtomicLong(0);
 
     public UserRepository() {
-        userRepository.put(id.incrementAndGet(),new User(id.get(),"gamemaster","gamemaster"
-                ,new Character(true,1000,50,"GodMod")));
+        Character[] characters = {new Character(true,1000,500,"godmod"),
+                null, null, null, null};
+        userRepository.put(id.incrementAndGet(),
+                new User(id.get(),"gamemaster","gamemaster@test.com", "gamemaster", characters));
     }
 
     @Override
@@ -29,15 +31,23 @@ public class UserRepository implements Repository<User>{
     }
 
     @Override
-    public void creat(User entity) {
+    public void save(User entity) {
         entity.setId(id.incrementAndGet());
         userRepository.put(entity.getId(),entity);
     }
-    public boolean isExists(String login, String password) {
+    public long isExists(String login) {
         for (User user : userRepository.values()) {
-            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-                return true;
+            if (user.getLogin().equals(login)) {
+                return user.getId();
             }
+        }
+        return -1L;
+    }
+
+    @Override
+    public boolean isCorrectPassword(String password, long id) {
+        if (get(id).get().getPassword().equals(password)) {
+            return true;
         }
         return false;
     }

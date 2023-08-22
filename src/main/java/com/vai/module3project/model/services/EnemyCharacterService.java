@@ -11,22 +11,27 @@ public class EnemyCharacterService implements CRUDService<Character> {
     private final Repository<Character> enemyCharacterRepository = new EnemyCharacterRepository();
 
     @Override
-    public Collection<Character> getAll() {
+    public Collection<Character> getAllEntities() {
         return enemyCharacterRepository.getAll();
     }
 
     @Override
-    public Optional<Character> get(long id) {
+    public Optional<Character> getEntity(long id) {
         return enemyCharacterRepository.get(id);
     }
 
     @Override
-    public void creat(Character character) {
-        enemyCharacterRepository.creat(character);
+    public void saveEntity(Character character) {
+        enemyCharacterRepository.save(character);
     }
 
     @Override
-    public boolean isExists(String login, String password) {
+    public long isEntityExist(String login) {
+        return -1L;
+    }
+
+    @Override
+    public boolean isCorrectPassword(String password, long id) {
         return false;
     }
 }
