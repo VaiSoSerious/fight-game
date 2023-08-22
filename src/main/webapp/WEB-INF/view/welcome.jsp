@@ -15,13 +15,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
-    <style>
-        body {
-            padding: 20px;
-        }
-    </style>
 </head>
 <body>
+<%--Название игры--%>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-1"></div>
@@ -30,10 +26,12 @@
             <div class="container" >
                 <h1 align="center" style="color: red">Сдохни или умри!</h1>
             </div>
-            <br><br>
+            <hr>
+            <br>
         </div>
         <div class="col-md-1"></div>
     </div>
+    <%--Текстовый комментарий--%>
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
@@ -45,22 +43,27 @@
         <div class="col-md-1"></div>
     </div>
     <br><br>
+    <%--Блок с вводом информации и кнопками--%>
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <form action="LoginServlet" method="get">
+                <%--Поле ввода логина--%>
                 <div class="row">
                     <input id="textinput" name="username" type="text" placeholder="Введите логин" required="">
                 </div>
                 <br>
+                <%--Поле ввода пароля--%>
                 <div class="row">
                     <input id="passwordinput" name="password" type="password" placeholder="Введите пароль" required="">
                 </div>
                 <br>
+                <%--Кнопка входа--%>
                 <div class="row">
                     <button id="enterButton" name="singlebutton" class="btn btn-success">Вход</button>
                 </div>
             </form>
+            <%--Кнопка регистрации--%>
             <form action="registration" method="get">
                 <div class="row">
                     <button id="regButton" name="singlebutton" class="btn btn-primary">Регистрация</button>

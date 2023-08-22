@@ -14,9 +14,9 @@ public class ServiceLocator {
     private static ServiceLocator serviceLocator;
 
     private ServiceLocator() {
-        ServiceFactory<User> userServiceFactory = creatFactory("user");
+        ServiceFactory<User> userServiceFactory = createFactory("user");
         userService = userServiceFactory.createService();
-        ServiceFactory<Character> enemyCharacterServiceFactory = creatFactory("enemy");
+        ServiceFactory<Character> enemyCharacterServiceFactory = createFactory("enemy");
         enemyCharacterService = enemyCharacterServiceFactory.createService();
     }
 
@@ -27,7 +27,7 @@ public class ServiceLocator {
         return serviceLocator;
     }
 
-    private ServiceFactory creatFactory(String name) {
+    private ServiceFactory createFactory(String name) {
         switch (name) {
             case "user" -> {
                 return new UserServiceFactory();
