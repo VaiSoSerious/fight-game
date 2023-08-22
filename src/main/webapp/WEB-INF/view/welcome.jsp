@@ -9,28 +9,66 @@
 <html>
 <head>
     <title>Приветствие</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-<hr>
-<h1>Сдохни или умри!</h1>
-<hr>
-<h3>Предлагаю тебе испытать свои силы в увлекательнейшей игре тысячилетия: "Сдохни или умри!"</h3>
-<h3>Для продолжения тебе нужно войти в аккаунт или зарегистрироваться.</h3>
-<form action="LoginServlet" method="get">
-    <label for="username">Логин:</label>
-    <input type="text" name="username" id="username" required><br><br>
-
-    <label for="password">Пароль:</label>
-    <input type="password" name="password" id="password" required><br><br>
-
-    <input type="submit" value="Войти">
-</form>
-<form action="registration" method="get">
-    <input type="submit" value="Регистрация">
-</form>
-<%--<button onclick="window.location.href='PreRegistrationServlet'">Регистрация</button>--%>
-<%--<h3>Поздно вечером, возвращаясь домой к тебе пристал местный забулдыга. Сперва он что-то неразборчиво пробормотал,</h3>--%>
-<%--<h3>а потом спросил как тебя зовут?</h3>--%>
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <br><br>
+            <div class="container" >
+                <h1 align="center" style="color: red">Сдохни или умри!</h1>
+            </div>
+            <br><br>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <div class="panel-body" align="center">Предлагаю тебе испытать свои силы в увлекательнейшей игре тысячилетия! Для
+                    продолжения тебе нужно войти в аккаунт или зарегистрироваться.</div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form action="LoginServlet" method="get">
+                <div class="row">
+                    <input id="textinput" name="username" type="text" placeholder="Введите логин" required="">
+                </div>
+                <br>
+                <div class="row">
+                    <input id="passwordinput" name="password" type="password" placeholder="Введите пароль" required="">
+                </div>
+                <br>
+                <div class="row">
+                    <button id="enterButton" name="singlebutton" class="btn btn-success">Вход</button>
+                </div>
+            </form>
+            <form action="registration" method="get">
+                <div class="row">
+                    <button id="regButton" name="singlebutton" class="btn btn-primary">Регистрация</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
 </body>
 </html>
