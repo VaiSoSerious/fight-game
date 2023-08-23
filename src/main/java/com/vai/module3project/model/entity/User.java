@@ -13,5 +13,5 @@ public class User {
     private String login;
     private String email;
     private String password;
-    Character[] character = new Character[5];
+    private Character[] character = new Character[5];
 }

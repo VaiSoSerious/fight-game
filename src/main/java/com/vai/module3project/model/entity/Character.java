@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class Character {
-    private boolean turn = true;
+    private boolean turn;
     int health;
     int power;
     String name;

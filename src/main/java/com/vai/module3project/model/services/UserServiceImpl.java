@@ -1,5 +1,6 @@
 package com.vai.module3project.model.services;
 
+import com.vai.module3project.model.entity.Character;
 import com.vai.module3project.model.entity.User;
 import com.vai.module3project.model.factories.UserFactory;
 import com.vai.module3project.model.factories.UserFactoryImpl;
@@ -81,5 +82,16 @@ public class UserServiceImpl implements UserService<User> {
     @Override
     public boolean isEmailBusy(String email) {
         return userRepository.isEmailBusy(email);
+    }
+
+    @Override
+    public boolean userHaveCharactersCheck(long id) {
+        Character[] characters = getEntity(id).get().getCharacter();
+        for (Character character : characters) {
+            if (character != null) {
+                return true;
+            }
+        }
+        return false;
     }
 }

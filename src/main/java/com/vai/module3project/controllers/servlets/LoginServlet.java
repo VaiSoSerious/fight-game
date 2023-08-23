@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Log4j2
@@ -26,8 +27,11 @@ public class LoginServlet extends HelloServlet {
         long userId = userService.isEntityExist(login);
         if (userId > 0) {
             if (userService.isCorrectPassword(password, userId)) {
-                request.getRequestDispatcher("WEB-INF/view/battle.jsp").forward(request, response);
+                HttpSession session = request.getSession();
+                User user = serviceLocator.getUserService().getEntity(userId).get();
+                session.setAttribute("user",user);
                 log.info("Был произведен вход в систему.");
+                request.getRequestDispatcher("/mainmenu").forward(request, response);
             } else {
                 request.setAttribute("wrongPass", true);
                 request.getRequestDispatcher("WEB-INF/view/welcome.jsp").forward(request, response);

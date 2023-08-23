@@ -16,10 +16,6 @@ import java.io.IOException;
 public class HelloServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        log.info("Запуск сервера");
-        ServletContext appContext = request.getServletContext();
-        appContext.setAttribute("serviceLocator", ServiceLocator.getServiceLocator());
-
         request.getRequestDispatcher("WEB-INF/view/welcome.jsp").forward(request, response);
     }
 }
