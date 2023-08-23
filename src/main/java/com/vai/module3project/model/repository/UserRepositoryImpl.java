@@ -56,12 +56,12 @@ public class UserRepositoryImpl implements UserRepository<User> {
     }
 
     @Override
-    public boolean isEmailFreeCheck(String email) {
+    public boolean isEmailBusy(String email) {
         for (User user : userRepository.values()) {
             if (user.getEmail().equals(email)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }

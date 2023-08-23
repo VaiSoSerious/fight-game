@@ -1,7 +1,6 @@
 package com.vai.module3project.controllers.servlets.Registration;
 
 import com.vai.module3project.model.entity.User;
-import com.vai.module3project.model.services.CRUDService;
 import com.vai.module3project.model.services.ServiceLocator;
 import com.vai.module3project.model.services.UserService;
 import lombok.extern.log4j.Log4j2;
@@ -37,6 +36,10 @@ public class RegisterServlet extends HttpServlet {
         if (userService.isEntityExist(login) > 0) {
             request.setAttribute("alreadyExist", true);
             log.error("Ошибка при регистрации. Пользователь с таким логином уже существует!");
+            request.getRequestDispatcher("WEB-INF/view/registration.jsp").forward(request, response);
+        } else if (userService.isEmailBusy(email)) {
+            request.setAttribute("emailIsBusy", true);
+            log.error("Ошибка при регистрации. Пользователь с такой почтой уже существует!");
             request.getRequestDispatcher("WEB-INF/view/registration.jsp").forward(request, response);
         } else {
             User user = serviceLocator.getUserService().getUserFactory().create(login, "user", email, password);

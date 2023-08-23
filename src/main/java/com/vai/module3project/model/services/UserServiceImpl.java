@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService<User> {
     }
 
     @Override
-    public boolean isEmailFreeCheck(String email) {
-        return false;
+    public boolean isEmailBusy(String email) {
+        return userRepository.isEmailBusy(email);
     }
 }

@@ -63,8 +63,13 @@
                 <%--Поле ввода email--%>
                 <div class="row">
                     <input id="emailInput" name="email" type="email" placeholder="Введите почту" required="">
+                    <c:if test="${emailIsBusy == true}">
+                        <div class="alert alert-danger alert-sm mt-1">Эта почта уже занята.</div>
+                    </c:if>
                 </div>
-                <br>
+                    <c:if test="${emailIsBusy != true}">
+                        <br>
+                    </c:if>
                 <%--Поле ввода пароля--%>
                 <div class="row">
                     <input id="passwordInput" name="password" type="password" placeholder="Введите пароль" required="">

@@ -9,5 +9,5 @@ public interface UserService<T> extends CRUDService<T> {
 
     boolean isCorrectPassword(String password, long id);
 
-    boolean isEmailFreeCheck(String email);
+    boolean isEmailBusy(String email);
 }
