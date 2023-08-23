@@ -23,15 +23,26 @@
 <div class="container-fluid">
     <%--Название игры--%>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
             <br><br>
             <div class="container">
                 <h1 align="center" style="color: red">Сдохни или умри!</h1>
             </div>
-            <hr>
             <br>
         </div>
+        <div class="col-md-2">
+            <br><br>
+            <div class="panel-body" align="center">Вы вошли как: ${user.name}
+                <form action="hello" method="get">
+                    <%--                    <div class="row">--%>
+                    <button id="backButton" name="backButton" class="btn btn-danger">Выйти</button>
+                    <%--                    </div>--%>
+                </form>
+            </div>
+        </div>
     </div>
+    <hr>
     <%--Текстовый комментарий--%>
     <div class="row">
         <div class="col-md-2"></div>
@@ -41,7 +52,6 @@
             </div>
         </div>
         <div class="col-md-2">
-            <div class="panel-body" align="center">Вы вошли как: ${user.name}</div>
         </div>
         <br><br>
     </div>
@@ -49,8 +59,36 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <c:if test="${userHaveCharactersCheck != true}">
+                <c:if test="${user.characters.size() == 0}">
                     <div class="panel-body" align="center">У вас еще нет созданных персонажей.</div>
+                </c:if>
+                <c:if test="${user.characters.size() > 0}">
+                    <div class="panel-body" align="center">Ваши персонажи:</div>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr class="ui-state-active">
+                            <th>Имя</th>
+                            <th>Сила</th>
+                            <th>Жизни</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="character" items="${user.characters}">
+                            <tr>
+                                <td>${character.name}</td>
+                                <td>${character.power}</td>
+                                <td>${character.health}</td>
+                                <td align="center">
+                                    <form action="hello" method="get">
+                                        <button id="fightButton" name="fightButton" class="btn btn-success">В бой!
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </c:if>
             </div>
         </div>

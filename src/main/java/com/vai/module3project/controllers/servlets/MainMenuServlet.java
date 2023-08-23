@@ -20,13 +20,6 @@ public class MainMenuServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         log.info("Пользователь по имени " + user.getName() + " вошел в меню.");
 
-        ServiceLocator serviceLocator = ServiceLocator.getServiceLocator();
-        if (serviceLocator.getUserService().userHaveCharactersCheck(user.getId())) {
-            request.setAttribute("userHaveCharactersCheck", true);
-        } else {
-            request.setAttribute("userHaveCharactersCheck", false);
-        }
-
 
         request.getRequestDispatcher("WEB-INF/view/mainMenu.jsp").forward(request, response);
     }

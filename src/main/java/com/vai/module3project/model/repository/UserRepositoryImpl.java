@@ -13,12 +13,7 @@ public class UserRepositoryImpl implements UserRepository<User> {
     public static final AtomicLong id = new AtomicLong(0);
 
     public UserRepositoryImpl() {
-//        Character[] characters = {new Character(true,1000,500,"godmod"),
-//                null, null, null, null};
-//        User gameMaster = ServiceLocator.getServiceLocator().getUserService().getUserFactory()
-//                .create("gamemaster","Gamemaster","gamemaster@test.com","gamemaster");
-//        gameMaster.setId(id.get());
-//        userRepository.put(id.incrementAndGet(), gameMaster);
+
     }
 
     @Override
@@ -36,6 +31,12 @@ public class UserRepositoryImpl implements UserRepository<User> {
         entity.setId(id.incrementAndGet());
         userRepository.put(entity.getId(), entity);
     }
+
+    @Override
+    public void update(long id, User oldEntity) {
+
+    }
+
 
     @Override
     public long isExists(String login) {

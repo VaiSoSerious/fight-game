@@ -9,6 +9,7 @@ import com.vai.module3project.model.repository.UserRepositoryImpl;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Log4j2
@@ -50,10 +51,17 @@ public class UserServiceImpl implements UserService<User> {
     }
 
     @Override
-    public void saveEntity(User user) {
+    public long saveEntity(User user) {
+        long id = getAllEntities().size() + 1;
         log.info("Сохраняем нового пользователя: " + user.getName()
-                + " с почтой: " + user.getEmail() + " с id#: " + (getAllEntities().size() + 1));
+                + " с почтой: " + user.getEmail() + " с id#: " + id);
         userRepository.save(user);
+        return id;
+    }
+
+    @Override
+    public void updateEntity(long id, User newUser) {
+        userRepository.update(id,newUser);
     }
 
     @Override
@@ -86,7 +94,7 @@ public class UserServiceImpl implements UserService<User> {
 
     @Override
     public boolean userHaveCharactersCheck(long id) {
-        Character[] characters = getEntity(id).get().getCharacter();
+        List<Character> characters = getEntity(id).get().getCharacters();
         for (Character character : characters) {
             if (character != null) {
                 return true;
@@ -94,4 +102,10 @@ public class UserServiceImpl implements UserService<User> {
         }
         return false;
     }
+
+    @Override
+    public void creatNewCharacter(long id, Character character) {
+        getEntity(id).get().getCharacters().add(character);
+    }
+
 }

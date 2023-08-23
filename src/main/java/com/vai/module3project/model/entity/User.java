@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -13,5 +16,5 @@ public class User {
     private String login;
     private String email;
     private String password;
-    private Character[] character = new Character[5];
+    private List<Character> characters = new ArrayList<>();
 }

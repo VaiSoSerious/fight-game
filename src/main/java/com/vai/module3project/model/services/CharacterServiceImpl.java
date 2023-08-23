@@ -1,6 +1,8 @@
 package com.vai.module3project.model.services;
 
 import com.vai.module3project.model.entity.Character;
+import com.vai.module3project.model.factories.CharacterFactory;
+import com.vai.module3project.model.factories.CharacterFactoryImpl;
 import com.vai.module3project.model.repository.CharacterRepositoryImpl;
 import com.vai.module3project.model.repository.Repository;
 import lombok.extern.log4j.Log4j2;
@@ -12,8 +14,14 @@ import java.util.Optional;
 public class CharacterServiceImpl implements CharacterService<Character> {
     private final Repository<Character> characterRepository = new CharacterRepositoryImpl();
     private static CharacterServiceImpl characterService;
+    private static CharacterFactory characterFactory;
+
+    public CharacterFactory getCharacterFactory() {
+        return characterFactory;
+    }
 
     public CharacterServiceImpl() {
+        characterFactory = CharacterFactoryImpl.getCharacterFactory();
         log.info("Создалий новую Реализацию сервиса персонажей.");
     }
 
@@ -44,8 +52,16 @@ public class CharacterServiceImpl implements CharacterService<Character> {
     }
 
     @Override
-    public void saveEntity(Character character) {
+    public long saveEntity(Character character) {
         log.info("Сохраняем нового персонажа: " + character.getName());
         characterRepository.save(character);
+        return 0;
     }
+
+    @Override
+    public void updateEntity(long id, Character newEntity) {
+
+    }
+
+
 }

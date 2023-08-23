@@ -32,4 +32,10 @@ public class CharacterRepositoryImpl implements CharacterRepository<Character> {
         enemyCharacterRepository.put(id.incrementAndGet(), entity);
     }
 
+    @Override
+    public void update(long id, Character oldEntity) {
+
+    }
+
+
 }

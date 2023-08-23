@@ -8,7 +8,8 @@ public interface CRUDService<T> {
 
     Optional<T> getEntity(long id);
 
-    void saveEntity(T t);
+    long saveEntity(T entity);
+    void updateEntity(long id, T newEntity);
 
 
 }

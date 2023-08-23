@@ -9,4 +9,5 @@ public interface Repository<T> {
     Optional<T> get(long id);
 
     void save(T entity);
+    void update(long id, T oldEntity);
 }
