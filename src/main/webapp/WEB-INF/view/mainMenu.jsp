@@ -35,9 +35,7 @@
             <br><br>
             <div class="panel-body" align="center">Вы вошли как: ${user.name}
                 <form action="hello" method="get">
-                    <%--                    <div class="row">--%>
                     <button id="backButton" name="backButton" class="btn btn-danger">Выйти</button>
-                    <%--                    </div>--%>
                 </form>
             </div>
         </div>
@@ -55,7 +53,6 @@
         </div>
         <br><br>
     </div>
-
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -71,6 +68,7 @@
                             <th>Сила</th>
                             <th>Жизни</th>
                             <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -85,6 +83,11 @@
                                         </button>
                                     </form>
                                 </td>
+                                <td align="center">
+                                    <form action="mainmenu" method="post">
+                                        <button value="${character.name}" id="delButton" name="delButton" class="btn btn-danger">Удалить</button>
+                                    </form>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -93,13 +96,19 @@
             </div>
         </div>
     </div>
-
-
+    <div class="row">
+        <c:if test="${user.characters.size() < 5}">
+            <div class="col-md-12" align="center">
+                <form action="hello" method="get">
+                    <button id="creatCharacterButton" name="creatCharacterButton" class="btn btn-info">Создать</button>
+                </form>
+            </div>
+        </c:if>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
         crossorigin="anonymous"></script>
-
 </body>
 </html>

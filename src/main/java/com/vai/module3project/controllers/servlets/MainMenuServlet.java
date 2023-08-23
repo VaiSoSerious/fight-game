@@ -1,5 +1,6 @@
 package com.vai.module3project.controllers.servlets;
 
+import com.vai.module3project.model.entity.Character;
 import com.vai.module3project.model.entity.User;
 import com.vai.module3project.model.services.ServiceLocator;
 import lombok.extern.log4j.Log4j2;
@@ -20,7 +21,19 @@ public class MainMenuServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         log.info("Пользователь по имени " + user.getName() + " вошел в меню.");
 
+        request.getRequestDispatcher("WEB-INF/view/mainMenu.jsp").forward(request, response);
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String input = request.getParameter("delButton");
+        switch (input) {
+            default -> {
+                ServiceLocator locator = ServiceLocator.getServiceLocator();
+                User user = (User) request.getSession().getAttribute("user");
+                locator.getUserService().deleteCharacter(user.getId(), input);
+            }
+        }
         request.getRequestDispatcher("WEB-INF/view/mainMenu.jsp").forward(request, response);
     }
 }

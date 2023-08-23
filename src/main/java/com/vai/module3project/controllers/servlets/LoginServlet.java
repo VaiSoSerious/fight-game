@@ -1,25 +1,26 @@
 package com.vai.module3project.controllers.servlets;
 
 import com.vai.module3project.model.entity.User;
-import com.vai.module3project.model.services.CRUDService;
 import com.vai.module3project.model.services.ServiceLocator;
 import com.vai.module3project.model.services.UserService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Log4j2
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HelloServlet {
+@WebServlet(name = "login", value = "/login")
+public class LoginServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("username");
         String password = request.getParameter("password");
+
 
         ServiceLocator serviceLocator = (ServiceLocator) getServletContext().getAttribute("serviceLocator");
         UserService<User> userService = serviceLocator.getUserService();
@@ -31,7 +32,7 @@ public class LoginServlet extends HelloServlet {
                 User user = serviceLocator.getUserService().getEntity(userId).get();
                 session.setAttribute("user",user);
                 log.info("Был произведен вход в систему.");
-                request.getRequestDispatcher("/mainmenu").forward(request, response);
+                response.sendRedirect("/mainmenu");
             } else {
                 request.setAttribute("wrongPass", true);
                 request.getRequestDispatcher("WEB-INF/view/welcome.jsp").forward(request, response);

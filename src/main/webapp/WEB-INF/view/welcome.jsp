@@ -18,8 +18,8 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 </head>
 <body>
-<%--Название игры--%>
 <div class="container-fluid">
+    <%--Название игры--%>
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
@@ -50,7 +50,7 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <form action="LoginServlet" method="get">
+            <form action="login" method="post">
                 <%--Поле ввода логина--%>
                 <div class="row">
                     <input class="text" id="textinput" name="username" type="text" placeholder="Введите логин"
@@ -78,13 +78,13 @@
                 </c:if>
                 <%--Кнопка входа--%>
                 <div class="row">
-                    <button type="submit" id="enterButton" name="singlebutton" class="btn btn-success">Вход</button>
+                    <button id="enterButton" name="enterButton" class="btn btn-success">Вход</button>
                 </div>
             </form>
             <%--Кнопка регистрации--%>
             <form action="preregistration" method="get">
                 <div class="row">
-                    <button id="regButton" name="singlebutton" class="btn btn-primary">Регистрация</button>
+                    <button id="regButton" name="regButton" class="btn btn-primary">Регистрация</button>
                 </div>
             </form>
         </div>

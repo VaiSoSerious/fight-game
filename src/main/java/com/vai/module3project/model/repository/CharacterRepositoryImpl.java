@@ -36,6 +36,4 @@ public class CharacterRepositoryImpl implements CharacterRepository<Character> {
     public void update(long id, Character oldEntity) {
 
     }
-
-
 }

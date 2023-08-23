@@ -13,4 +13,5 @@ public interface UserService<T> extends CRUDService<T>{
     boolean isEmailBusy(String email);
     boolean userHaveCharactersCheck(long id);
     void creatNewCharacter(long id, Character character);
+    void deleteCharacter(long id, String character);
 }

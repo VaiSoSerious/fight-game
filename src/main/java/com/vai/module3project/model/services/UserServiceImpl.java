@@ -89,7 +89,9 @@ public class UserServiceImpl implements UserService<User> {
 
     @Override
     public boolean isEmailBusy(String email) {
-        return userRepository.isEmailBusy(email);
+        boolean result = userRepository.isEmailBusy(email);
+        log.info("Проверка на занятость электронной почты: " + email + " Результат: " + result);
+        return result;
     }
 
     @Override
@@ -97,15 +99,34 @@ public class UserServiceImpl implements UserService<User> {
         List<Character> characters = getEntity(id).get().getCharacters();
         for (Character character : characters) {
             if (character != null) {
+                log.info("Проверка на наличие персонажей у пользователя с id#: " + id + " Результат: " + true);
                 return true;
             }
         }
+        log.info("Проверка на наличие персонажей у пользователя с id#: " + id + " Результат: " + false);
         return false;
     }
 
     @Override
     public void creatNewCharacter(long id, Character character) {
+        log.info("Создание нового персонажа: " + character.getName() + " у пользователя с id#: " + id);
         getEntity(id).get().getCharacters().add(character);
+    }
+
+    @Override
+    public void deleteCharacter(long id, String character) {
+        Character characterForDeleting = null;
+        for (Character c : getEntity(id).get().getCharacters()) {
+            if (c.getName().equals(character)) {
+                characterForDeleting = c;
+            }
+        }
+        if (characterForDeleting != null) {
+            getEntity(id).get().getCharacters().remove(characterForDeleting);
+            log.info("Удаление персонажа: " + character + " у пользователя с id#: " + id);
+        } else {
+            log.info("Персонаж: " + character + " у пользователя с id#: " + id + " не найден.");
+        }
     }
 
 }
