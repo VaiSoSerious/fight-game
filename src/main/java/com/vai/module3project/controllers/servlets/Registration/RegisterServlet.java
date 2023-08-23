@@ -27,12 +27,14 @@ public class RegisterServlet extends HttpServlet {
         CRUDService<User> userService = serviceLocator.getUserService();
 
         if (!password.equals(passwordRepeat)) {
+            request.setAttribute("differentPass", true);
             log.error("Ошибка при регистрации. Пароли не совпадают!.");
             request.getRequestDispatcher("WEB-INF/view/registration.jsp").forward(request, response);
             return;
         }
 
         if (userService.isEntityExist(login) > 0) {
+            request.setAttribute("alreadyExist", true);
             log.error("Ошибка при регистрации. Пользователь с таким логином уже существует!");
             request.getRequestDispatcher("WEB-INF/view/registration.jsp").forward(request, response);
         } else {

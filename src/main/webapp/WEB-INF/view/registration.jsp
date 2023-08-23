@@ -15,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 </head>
 <body>
 <%--Название игры--%>
@@ -50,8 +51,15 @@
                 <%--Поле ввода логина--%>
                 <div class="row">
                     <input id="loginInput" name="username" type="text" placeholder="Введите логин" required="">
+                    <div class="container">
+                        <c:if test="${alreadyExist == true}">
+                            <div class="alert alert-danger alert-sm mt-1">Этот логин уже занят.</div>
+                        </c:if>
+                    </div>
                 </div>
-                <br>
+                <c:if test="${alreadyExist != true}">
+                    <br>
+                </c:if>
                 <%--Поле ввода email--%>
                 <div class="row">
                     <input id="emailInput" name="email" type="email" placeholder="Введите почту" required="">
@@ -65,8 +73,15 @@
                 <div class="row">
                     <input id="passwordRepeatInput" name="passwordRepeat" type="password"
                            placeholder="Введите пароль повторно" required="">
+                    <div class="container">
+                        <c:if test="${differentPass == true}">
+                            <div class="alert alert-danger alert-sm mt-1">Введены разные пароли.</div>
+                        </c:if>
+                    </div>
                 </div>
-                <br>
+                <c:if test="${differentPass != true}">
+                    <br>
+                </c:if>
                 <%--Кнопка входа--%>
                 <div class="row">
                     <button id="regButton" name="regButton" class="btn btn-success">Зарегистрироваться</button>

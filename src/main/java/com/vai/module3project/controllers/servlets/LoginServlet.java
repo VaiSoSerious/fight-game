@@ -27,10 +27,12 @@ public class LoginServlet extends HelloServlet{
                 request.getRequestDispatcher("WEB-INF/view/battle.jsp").forward(request, response);
                 log.info("Был произведен вход в систему.");
             } else {
+                request.setAttribute("wrongPass", true);
                 request.getRequestDispatcher("WEB-INF/view/welcome.jsp").forward(request, response);
                 log.error("При попытке входа возникла ошибка: не верный пароль!");
             }
         } else {
+            request.setAttribute("isExist", true);
             request.getRequestDispatcher("WEB-INF/view/welcome.jsp").forward(request, response);
             log.error("При попытке входа возникла ошибка: пользователь не найден!");
         }

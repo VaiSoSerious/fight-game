@@ -15,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 </head>
 <body>
 <%--Название игры--%>
@@ -23,7 +24,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <br><br>
-            <div class="container" >
+            <div class="container">
                 <h1 align="center" style="color: red">Сдохни или умри!</h1>
             </div>
             <hr>
@@ -36,8 +37,10 @@
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="panel panel-default">
-                <div class="panel-body" align="center">Предлагаю тебе испытать свои силы в увлекательнейшей игре тысячилетия! Для
-                    продолжения тебе нужно войти в аккаунт или зарегистрироваться.</div>
+                <div class="panel-body" align="center">Предлагаю тебе испытать свои силы в увлекательнейшей игре
+                    тысячилетия! Для
+                    продолжения тебе нужно войти в аккаунт или зарегистрироваться.
+                </div>
             </div>
         </div>
         <div class="col-md-1"></div>
@@ -50,17 +53,32 @@
             <form action="LoginServlet" method="get">
                 <%--Поле ввода логина--%>
                 <div class="row">
-                    <input id="textinput" name="username" type="text" placeholder="Введите логин" required="">
+                    <input class="text" id="textinput" name="username" type="text" placeholder="Введите логин"
+                           required="">
+                    <div class="container">
+                        <c:if test="${isExist == true}">
+                            <div class="alert alert-danger alert-sm mt-1">Неправильный логин.</div>
+                        </c:if>
+                    </div>
                 </div>
-                <br>
+                <c:if test="${isExist != true}">
+                    <br>
+                </c:if>
                 <%--Поле ввода пароля--%>
                 <div class="row">
                     <input id="passwordinput" name="password" type="password" placeholder="Введите пароль" required="">
+                    <div class="container">
+                        <c:if test="${wrongPass == true}">
+                            <div class="alert alert-danger alert-sm mt-1">Неправильный пароль.</div>
+                        </c:if>
+                    </div>
                 </div>
-                <br>
+                <c:if test="${wrongPass != true}">
+                    <br>
+                </c:if>
                 <%--Кнопка входа--%>
                 <div class="row">
-                    <button id="enterButton" name="singlebutton" class="btn btn-success">Вход</button>
+                    <button type="submit" id="enterButton" name="singlebutton" class="btn btn-success">Вход</button>
                 </div>
             </form>
             <%--Кнопка регистрации--%>
