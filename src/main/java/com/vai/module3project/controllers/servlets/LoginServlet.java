@@ -3,6 +3,7 @@ package com.vai.module3project.controllers.servlets;
 import com.vai.module3project.model.entity.User;
 import com.vai.module3project.model.services.CRUDService;
 import com.vai.module3project.model.services.ServiceLocator;
+import com.vai.module3project.model.services.UserService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -19,7 +20,7 @@ public class LoginServlet extends HelloServlet{
         String password = request.getParameter("password");
 
         ServiceLocator serviceLocator = (ServiceLocator) getServletContext().getAttribute("serviceLocator");
-        CRUDService<User> userService = serviceLocator.getUserService();
+        UserService<User> userService = serviceLocator.getUserService();
 
         long userId = userService.isEntityExist(login);
         if ( userId > 0) {

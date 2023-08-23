@@ -3,6 +3,7 @@ package com.vai.module3project.controllers.servlets.Registration;
 import com.vai.module3project.model.entity.User;
 import com.vai.module3project.model.services.CRUDService;
 import com.vai.module3project.model.services.ServiceLocator;
+import com.vai.module3project.model.services.UserService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -24,7 +25,7 @@ public class RegisterServlet extends HttpServlet {
         String passwordRepeat = request.getParameter("passwordRepeat");
 
         ServiceLocator serviceLocator = (ServiceLocator) getServletContext().getAttribute("serviceLocator");
-        CRUDService<User> userService = serviceLocator.getUserService();
+        UserService<User> userService = serviceLocator.getUserService();
 
         if (!password.equals(passwordRepeat)) {
             request.setAttribute("differentPass", true);

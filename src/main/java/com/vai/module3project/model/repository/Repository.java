@@ -9,7 +9,4 @@ public interface Repository<T> {
     Optional<T> get(long id);
 
     void save(T entity);
-
-    long isExists(String login);
-    boolean isCorrectPassword(String password, long id);
 }

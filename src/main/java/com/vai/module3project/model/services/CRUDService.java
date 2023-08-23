@@ -10,8 +10,5 @@ public interface CRUDService<T> {
 
     void saveEntity(T t);
 
-    long isEntityExist(String login);
 
-
-    boolean isCorrectPassword(String password, long id);
 }

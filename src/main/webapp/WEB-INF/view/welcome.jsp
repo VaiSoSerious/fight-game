@@ -57,7 +57,7 @@
                            required="">
                     <div class="container">
                         <c:if test="${isExist == true}">
-                            <div class="alert alert-danger alert-sm mt-1">Неправильный логин.</div>
+                            <div class="alert alert-danger alert-sm mt-1">Неверный логин.</div>
                         </c:if>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <input id="passwordinput" name="password" type="password" placeholder="Введите пароль" required="">
                     <div class="container">
                         <c:if test="${wrongPass == true}">
-                            <div class="alert alert-danger alert-sm mt-1">Неправильный пароль.</div>
+                            <div class="alert alert-danger alert-sm mt-1">Неверный пароль.</div>
                         </c:if>
                     </div>
                 </div>
