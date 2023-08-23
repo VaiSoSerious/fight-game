@@ -39,10 +39,7 @@ public class RegisterServlet extends HttpServlet {
             log.error("Ошибка при регистрации. Пользователь с таким логином уже существует!");
             request.getRequestDispatcher("WEB-INF/view/registration.jsp").forward(request, response);
         } else {
-            User user = new User();
-            user.setLogin(login);
-            user.setEmail(email);
-            user.setPassword(password);
+            User user = serviceLocator.getUserService().getUserFactory().create(login, "user", email, password);
             userService.saveEntity(user);
             request.getRequestDispatcher("WEB-INF/view/welcome.jsp").forward(request, response);
         }

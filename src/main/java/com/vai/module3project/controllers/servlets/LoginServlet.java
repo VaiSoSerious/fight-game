@@ -11,9 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
 @Log4j2
 @WebServlet("/LoginServlet")
-public class LoginServlet extends HelloServlet{
+public class LoginServlet extends HelloServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("username");
@@ -23,8 +24,8 @@ public class LoginServlet extends HelloServlet{
         UserService<User> userService = serviceLocator.getUserService();
 
         long userId = userService.isEntityExist(login);
-        if ( userId > 0) {
-            if (userService.isCorrectPassword(password,userId)) {
+        if (userId > 0) {
+            if (userService.isCorrectPassword(password, userId)) {
                 request.getRequestDispatcher("WEB-INF/view/battle.jsp").forward(request, response);
                 log.info("Был произведен вход в систему.");
             } else {

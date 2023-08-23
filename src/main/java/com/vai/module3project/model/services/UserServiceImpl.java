@@ -1,6 +1,8 @@
 package com.vai.module3project.model.services;
 
 import com.vai.module3project.model.entity.User;
+import com.vai.module3project.model.factories.UserFactory;
+import com.vai.module3project.model.factories.UserFactoryImpl;
 import com.vai.module3project.model.repository.UserRepository;
 import com.vai.module3project.model.repository.UserRepositoryImpl;
 import lombok.extern.log4j.Log4j2;
@@ -12,8 +14,11 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService<User> {
     private final UserRepository<User> userRepository = new UserRepositoryImpl();
     private static UserServiceImpl userService;
+    private final UserFactory userFactory;
+
 
     public UserServiceImpl() {
+        userFactory = UserFactoryImpl.getUserFactory();
         log.info("Создалий новую Реализацию пользовательского сервиса.");
     }
 
@@ -58,6 +63,11 @@ public class UserServiceImpl implements UserService<User> {
             log.info("Проверка на наличие пользователя по логину не нашла пользователя " + login);
         }
         return userId;
+    }
+
+    @Override
+    public UserFactory getUserFactory() {
+        return userFactory;
     }
 
     @Override
