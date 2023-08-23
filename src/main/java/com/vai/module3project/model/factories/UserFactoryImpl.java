@@ -26,7 +26,7 @@ public class UserFactoryImpl implements UserFactory {
         user.setName(name);
         user.setEmail(email);
         user.setPassword(password);
-        log.info("Создали нового пользователя с почтой: " + email);
+        log.info("Создали нового пользователя: " + name + " с почтой: " + email);
         return user;
     }
 }

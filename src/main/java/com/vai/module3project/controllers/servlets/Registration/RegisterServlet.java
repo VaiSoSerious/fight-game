@@ -19,6 +19,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("username");
+        String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordRepeat = request.getParameter("passwordRepeat");
@@ -42,7 +43,7 @@ public class RegisterServlet extends HttpServlet {
             log.error("Ошибка при регистрации. Пользователь с такой почтой уже существует!");
             request.getRequestDispatcher("WEB-INF/view/registration.jsp").forward(request, response);
         } else {
-            User user = serviceLocator.getUserService().getUserFactory().create(login, "user", email, password);
+            User user = serviceLocator.getUserService().getUserFactory().create(login, name, email, password);
             userService.saveEntity(user);
             request.getRequestDispatcher("WEB-INF/view/welcome.jsp").forward(request, response);
         }

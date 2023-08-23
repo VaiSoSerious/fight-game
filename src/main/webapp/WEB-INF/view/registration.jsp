@@ -60,6 +60,12 @@
                 <c:if test="${alreadyExist != true}">
                     <br>
                 </c:if>
+                <div class="row">
+                    <input id="nameInput" name="name" type="text" placeholder="Введите имя" required="">
+                    <div class="container">
+                    </div>
+                </div>
+                <br>
                 <%--Поле ввода email--%>
                 <div class="row">
                     <input id="emailInput" name="email" type="email" placeholder="Введите почту" required="">
@@ -67,9 +73,9 @@
                         <div class="alert alert-danger alert-sm mt-1">Эта почта уже занята.</div>
                     </c:if>
                 </div>
-                    <c:if test="${emailIsBusy != true}">
-                        <br>
-                    </c:if>
+                <c:if test="${emailIsBusy != true}">
+                    <br>
+                </c:if>
                 <%--Поле ввода пароля--%>
                 <div class="row">
                     <input id="passwordInput" name="password" type="password" placeholder="Введите пароль" required="">

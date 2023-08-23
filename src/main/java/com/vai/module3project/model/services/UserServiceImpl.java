@@ -50,7 +50,8 @@ public class UserServiceImpl implements UserService<User> {
 
     @Override
     public void saveEntity(User user) {
-        log.info("Сохраняем нового пользователя с id#: " + (getAllEntities().size() + 1) + " лог: " + user.getLogin());
+        log.info("Сохраняем нового пользователя: " + user.getName()
+                + " с почтой: " + user.getEmail() + " с id#: " + (getAllEntities().size() + 1));
         userRepository.save(user);
     }
 
