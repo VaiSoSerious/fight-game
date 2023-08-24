@@ -77,12 +77,6 @@
         <br><br>
     </div>
     <%--Блок выбора профессии--%>
-    <c:set var="backend"
-           value=""/>
-    <c:set var="devops"
-           value=""/>
-    <c:set var="frontend"
-           value=""/>
     <div class="row">
         <div class="col-md-12">
             <table class="table table-bordered">

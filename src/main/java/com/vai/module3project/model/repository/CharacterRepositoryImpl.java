@@ -1,6 +1,7 @@
 package com.vai.module3project.model.repository;
 
 import com.vai.module3project.model.entity.Character;
+import com.vai.module3project.model.entity.Class;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ public class CharacterRepositoryImpl implements CharacterRepository<Character> {
     public static final AtomicLong id = new AtomicLong();
 
     public CharacterRepositoryImpl() {
-        enemyCharacterRepository.put(id.incrementAndGet(), new Character(false, 85, 3, "Местный забулдыга"));
+        enemyCharacterRepository.put(id.incrementAndGet(), new Character(false, 85, 3, "Местный забулдыга", Class.ENEMY));
     }
 
     @Override

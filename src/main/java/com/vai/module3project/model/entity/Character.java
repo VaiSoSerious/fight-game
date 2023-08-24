@@ -12,6 +12,7 @@ public class Character {
     int health;
     int power;
     String name;
+    Class characterClass;
 
     public int hit() {
         return this.power;

@@ -68,6 +68,7 @@
                             <th>Имя</th>
                             <th>Сила</th>
                             <th>Жизни</th>
+                            <th>Класс</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -78,6 +79,7 @@
                                 <td>${character.name}</td>
                                 <td>${character.power}</td>
                                 <td>${character.health}</td>
+                                <td>${character.characterClass.tittle}</td>
                                 <td align="center">
                                     <form action="hello" method="get">
                                         <button id="fightButton" name="fightButton" class="btn btn-success">В бой!
