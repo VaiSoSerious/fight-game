@@ -26,14 +26,20 @@ public class MainMenuServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String input = request.getParameter("delButton");
-        switch (input) {
-            default -> {
-                ServiceLocator locator = ServiceLocator.getServiceLocator();
-                User user = (User) request.getSession().getAttribute("user");
-                locator.getUserService().deleteCharacter(user.getId(), input);
-            }
+        ServiceLocator locator = ServiceLocator.getServiceLocator();
+        User user = (User) request.getSession().getAttribute("user");
+
+        String characterName = request.getParameter("delButton");
+        if (characterName != null) {
+            locator.getUserService().deleteCharacter(user.getId(), characterName);
         }
+
+//        String creatCommand =  request.getParameter("creatCharacterButton");
+//        if (creatCommand != null) {
+//            Character character = locator.getCharacterService().getCharacterFactory().create("NewCharacter", 10,100,true);
+//            locator.getUserService().creatNewCharacter(user.getId(), character);
+//        }
+
         request.getRequestDispatcher("WEB-INF/view/mainMenu.jsp").forward(request, response);
     }
 }

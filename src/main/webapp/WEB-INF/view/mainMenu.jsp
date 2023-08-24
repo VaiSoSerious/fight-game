@@ -53,6 +53,7 @@
         </div>
         <br><br>
     </div>
+    <%--Блок отображения персонажей--%>
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -85,7 +86,9 @@
                                 </td>
                                 <td align="center">
                                     <form action="mainmenu" method="post">
-                                        <button value="${character.name}" id="delButton" name="delButton" class="btn btn-danger">Удалить</button>
+                                        <button value="${character.name}" id="delButton" name="delButton"
+                                                class="btn btn-danger">Удалить
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
@@ -96,10 +99,11 @@
             </div>
         </div>
     </div>
+    <%--Блок создания персонажа--%>
     <div class="row">
         <c:if test="${user.characters.size() < 5}">
             <div class="col-md-12" align="center">
-                <form action="hello" method="get">
+                <form action="newcharacter" method="get">
                     <button id="creatCharacterButton" name="creatCharacterButton" class="btn btn-info">Создать</button>
                 </form>
             </div>
