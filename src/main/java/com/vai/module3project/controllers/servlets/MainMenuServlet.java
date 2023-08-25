@@ -1,6 +1,7 @@
 package com.vai.module3project.controllers.servlets;
 
 import com.vai.module3project.model.entity.Character;
+import com.vai.module3project.model.entity.Class;
 import com.vai.module3project.model.entity.User;
 import com.vai.module3project.model.services.ServiceLocator;
 import lombok.extern.log4j.Log4j2;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
 @Log4j2
 @WebServlet(name = "mainMenu", value = "/mainmenu")
 public class MainMenuServlet extends HttpServlet {
@@ -34,12 +36,22 @@ public class MainMenuServlet extends HttpServlet {
             locator.getUserService().deleteCharacter(user.getId(), characterName);
         }
 
-//        String creatCommand =  request.getParameter("creatCharacterButton");
-//        if (creatCommand != null) {
-//            Character character = locator.getCharacterService().getCharacterFactory().create("NewCharacter", 10,100,true);
-//            locator.getUserService().creatNewCharacter(user.getId(), character);
-//        }
-
+        String characterClass = request.getParameter("creatButton");
+        String newCharacterName = request.getParameter("characterName");
+        if (characterClass != null) {
+            Character character = null;
+            switch (characterClass) {
+                case "backend" -> character = locator.getCharacterService().getCharacterFactory()
+                        .create(newCharacterName, 15, 70, true, Class.BACKEND);
+                case "devops" -> character = locator.getCharacterService().getCharacterFactory()
+                        .create(newCharacterName, 5, 200, true, Class.DEVOPS);
+                case "frontend" -> character = locator.getCharacterService().getCharacterFactory()
+                        .create(newCharacterName, 10, 100, true, Class.FRONTEND);
+            }
+            locator.getUserService().creatNewCharacter(user.getId(), character);
+            log.info("Создали новый персонаж с именем: " + newCharacterName + " и классом: " + characterClass
+            + "пользователю с id#: " + user.getId());
+        }
         request.getRequestDispatcher("WEB-INF/view/mainMenu.jsp").forward(request, response);
     }
 }
