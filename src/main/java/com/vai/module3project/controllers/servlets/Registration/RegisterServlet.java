@@ -27,6 +27,18 @@ public class RegisterServlet extends HttpServlet {
         ServiceLocator serviceLocator = (ServiceLocator) getServletContext().getAttribute("serviceLocator");
         UserService<User> userService = serviceLocator.getUserService();
 
+        if (!userService.containsOnlyLettersAndDigits(login)) {
+            log.error("Ошибка при регистрации. Логин содержит не только английские буквы и цифры");
+            request.setAttribute("badLogin", true);
+            request.getRequestDispatcher("WEB-INF/view/registration.jsp").forward(request, response);
+        }
+
+        if (!userService.containsOnlyLettersAndDigits(password)) {
+            log.error("Ошибка при регистрации. пароль содержит не только английские буквы и цифры");
+            request.setAttribute("badPassword", true);
+            request.getRequestDispatcher("WEB-INF/view/registration.jsp").forward(request, response);
+        }
+
         if (!password.equals(passwordRepeat)) {
             request.setAttribute("differentPass", true);
             log.error("Ошибка при регистрации. Пароли не совпадают!.");

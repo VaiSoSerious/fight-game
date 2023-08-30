@@ -88,6 +88,12 @@ public class UserServiceImpl implements UserService<User> {
     }
 
     @Override
+    public boolean containsOnlyLettersAndDigits(String login) {
+        String pattern = "^[a-zA-Z0-9]+$";
+        return login.matches(pattern);
+    }
+
+    @Override
     public boolean isEmailBusy(String email) {
         boolean result = userRepository.isEmailBusy(email);
         log.info("Проверка на занятость электронной почты: " + email + " Результат: " + result);

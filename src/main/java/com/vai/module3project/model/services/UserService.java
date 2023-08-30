@@ -9,6 +9,7 @@ public interface UserService<T> extends CRUDService<T>{
     UserFactory getUserFactory();
 
     boolean isCorrectPassword(String password, long id);
+    boolean containsOnlyLettersAndDigits(String login);
 
     boolean isEmailBusy(String email);
     boolean userHaveCharactersCheck(long id);

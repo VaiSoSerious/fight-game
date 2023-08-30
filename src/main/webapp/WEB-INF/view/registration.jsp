@@ -33,17 +33,17 @@
         </div>
         <div class="col-md-1"></div>
     </div>
-        <%--Текстовый комментарий--%>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <div class="panel panel-default">
-                    <div class="panel-body" align="center">Регистрация</div>
-                </div>
+    <%--Текстовый комментарий--%>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <div class="panel-body" align="center">Регистрация</div>
             </div>
-            <div class="col-md-1"></div>
-            <br><br>
         </div>
+        <div class="col-md-1"></div>
+        <br><br>
+    </div>
 
     <%--Блок с вводом информации и кнопками--%>
     <div class="row">
@@ -57,9 +57,14 @@
                         <c:if test="${alreadyExist == true}">
                             <div class="alert alert-danger alert-sm mt-1">Этот логин уже занят.</div>
                         </c:if>
+                        <c:if test="${badLogin == true}">
+                            <div class="alert alert-danger alert-sm mt-1">Логин может содержать только английские буквы
+                                и цифры.
+                            </div>
+                        </c:if>
                     </div>
                 </div>
-                <c:if test="${alreadyExist != true}">
+                <c:if test="${alreadyExist != true || badLogin != true}">
                     <br>
                 </c:if>
                 <div class="row">
@@ -90,9 +95,14 @@
                         <c:if test="${differentPass == true}">
                             <div class="alert alert-danger alert-sm mt-1">Введены разные пароли.</div>
                         </c:if>
+                        <c:if test="${badPassword == true}">
+                            <div class="alert alert-danger alert-sm mt-1">Пароль может содержать только английские буквы
+                                и цифры.
+                            </div>
+                        </c:if>
                     </div>
                 </div>
-                <c:if test="${differentPass != true}">
+                <c:if test="${differentPass != true || badPassword != true}">
                     <br>
                 </c:if>
                 <%--Кнопка входа--%>
