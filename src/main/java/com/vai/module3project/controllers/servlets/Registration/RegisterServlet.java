@@ -24,7 +24,7 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String passwordRepeat = request.getParameter("passwordRepeat");
 
-        ServiceLocator serviceLocator = (ServiceLocator) getServletContext().getAttribute("serviceLocator");
+        ServiceLocator serviceLocator = ServiceLocator.getServiceLocator();
         UserService<User> userService = serviceLocator.getUserService();
 
         if (!userService.containsOnlyLettersAndDigits(login)) {

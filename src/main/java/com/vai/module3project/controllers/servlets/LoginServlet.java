@@ -18,7 +18,7 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ServiceLocator serviceLocator = (ServiceLocator) getServletContext().getAttribute("serviceLocator");
+        ServiceLocator serviceLocator = ServiceLocator.getServiceLocator();
         UserService<User> userService = serviceLocator.getUserService();
 
         String login = "guest";
@@ -42,8 +42,7 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("username");
         String password = request.getParameter("password");
 
-
-        ServiceLocator serviceLocator = (ServiceLocator) getServletContext().getAttribute("serviceLocator");
+        ServiceLocator serviceLocator = ServiceLocator.getServiceLocator();
         UserService<User> userService = serviceLocator.getUserService();
 
         long userId = userService.isEntityExist(login);

@@ -14,5 +14,6 @@ public class StartFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         log.info("Запуск сервера");
         request.getRequestDispatcher("/init").forward(request, response);
+//        response.sendRedirect("/hello");
     }
 }

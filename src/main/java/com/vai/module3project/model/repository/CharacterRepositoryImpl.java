@@ -16,10 +16,10 @@ public class CharacterRepositoryImpl implements CharacterRepository<Character> {
     public static final AtomicLong id = new AtomicLong();
 
     public CharacterRepositoryImpl() {
-        Character character = new Character(false, 85, 3, "Местный забулдыга", Class.ENEMY);
-        String name = character.getName();
-        log.info("Создаем нового игрового персонажа: " + name);
-        enemyCharacterRepository.put(id.incrementAndGet(), character);
+//        Character character = new Character(false, 85, 3, "Местный забулдыга", Class.ENEMY);
+//        String name = character.getName();
+//        log.info("Создаем нового игрового персонажа: " + name);
+//        enemyCharacterRepository.put(id.incrementAndGet(), character);
     }
 
     @Override

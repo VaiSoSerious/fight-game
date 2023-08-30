@@ -14,32 +14,38 @@ import java.io.IOException;
 
 @WebServlet(name = "InitServlet", value = "/init")
 public class InitServlet extends HttpServlet {
+    boolean isInit = false;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ServletContext appContext = request.getServletContext();
+//       Код сервлета запускается два раза, сделал проверку, чтоб не было повторения выполнения
+        if (!isInit) {
+            isInit = initialization();
+        }
+        response.sendRedirect("/hello");
+    }
+
+    private boolean initialization() {
         ServiceLocator locator = ServiceLocator.getServiceLocator();
-        appContext.setAttribute("serviceLocator", locator);
-
         User gameMaster = locator.getUserService().getUserFactory()
-                .create("gm","GameMaster","gm@gmail.com","pass");
-        Character gameMasterCharacter1 = locator.getCharacterService().getCharacterFactory().create("GameMaster", 50, 1000, true, Class.ADMIN);
-        Character gameMasterCharacter2 = locator.getCharacterService().getCharacterFactory().create("GameMasterX10", 500, 10000, true,Class.ADMIN);
+                .create("gm", "GameMaster", "gm@gmail.com", "pass");
+        Character gameMasterCharacter1 = locator.getCharacterService().getCharacterFactory().create("GameMasterX1", 50, 1000, true, Class.ADMIN);
+        Character gameMasterCharacter2 = locator.getCharacterService().getCharacterFactory().create("GameMasterX10", 500, 10000, true, Class.ADMIN);
         long id = locator.getUserService().saveEntity(gameMaster);
-        locator.getUserService().creatNewCharacter(gameMaster.getId(),gameMasterCharacter1);
-        locator.getUserService().creatNewCharacter(gameMaster.getId(),gameMasterCharacter2);
-        locator.getUserService().updateEntity(id,gameMaster);
+        locator.getUserService().creatNewCharacter(gameMaster.getId(), gameMasterCharacter1);
+        locator.getUserService().creatNewCharacter(gameMaster.getId(), gameMasterCharacter2);
+        locator.getUserService().updateEntity(id, gameMaster);
 
-        Character weakEnemy = locator.getCharacterService().getCharacterFactory().create("Местный забулдыга", 3, 75,false, Class.ENEMY);
+        Character weakEnemy = locator.getCharacterService().getCharacterFactory().create("Местный забулдыга", 3, 75, false, Class.ENEMY);
         locator.getCharacterService().saveEntity(weakEnemy);
-        Character mediumEnemy = locator.getCharacterService().getCharacterFactory().create("Бабка у подъезда", 5, 100,false, Class.ENEMY);
+        Character mediumEnemy = locator.getCharacterService().getCharacterFactory().create("Бабка у подъезда", 5, 100, false, Class.ENEMY);
         locator.getCharacterService().saveEntity(mediumEnemy);
-        Character hardEnemy = locator.getCharacterService().getCharacterFactory().create("Качек-гопник", 15, 150,false, Class.ENEMY);
+        Character hardEnemy = locator.getCharacterService().getCharacterFactory().create("Качек-гопник", 15, 150, false, Class.ENEMY);
         locator.getCharacterService().saveEntity(hardEnemy);
 
         User guest = locator.getUserService().getUserFactory()
-                .create("guest","Гость","guest@gmail.com","guest");
+                .create("guest", "Гость", "guest@gmail.com", "guest");
         ServiceLocator.getServiceLocator().getUserService().saveEntity(guest);
-
-        request.getRequestDispatcher("/hello").forward(request, response);
+        return true;
     }
 }
