@@ -17,7 +17,27 @@ import java.io.IOException;
 @WebServlet(name = "login", value = "/login")
 public class LoginServlet extends HttpServlet {
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ServiceLocator serviceLocator = (ServiceLocator) getServletContext().getAttribute("serviceLocator");
+        UserService<User> userService = serviceLocator.getUserService();
+
+        String login = "guest";
+        long userId = userService.isEntityExist(login);
+        if (userId > 0) {
+            HttpSession session = request.getSession();
+            User user = serviceLocator.getUserService().getEntity(userId).get();
+            session.setAttribute("user",user);
+            log.info("Был произведен вход в систему как гость.");
+            response.sendRedirect("/mainmenu");
+        } else {
+            log.error("Попытка входа как гость не удалась. Пользователь не найден.");
+        }
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String guest = request.getParameter("guestButton");
+        log.info(guest);
         String login = request.getParameter("username");
         String password = request.getParameter("password");
 

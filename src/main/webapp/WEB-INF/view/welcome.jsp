@@ -87,6 +87,12 @@
                     <button id="regButton" name="regButton" class="btn btn-primary">Регистрация</button>
                 </div>
             </form>
+            <%--Кнопка входа как гость--%>
+            <form action="login" method="get">
+                <div class="row">
+                    <button value="guest" id="guestButton" name="guestButton" class="btn btn-info">Войти как гость</button>
+                </div>
+            </form>
         </div>
         <div class="col-md-4"></div>
     </div>

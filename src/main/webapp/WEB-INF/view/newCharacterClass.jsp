@@ -69,11 +69,22 @@
                 <div class="row">
                     <input class="text" id="characterName" name="characterName" type="text"
                            placeholder="Введите имя персонажа" required="">
+                    <div class="container">
+                        <c:if test="${badName == true}">
+                            <div class="alert alert-danger alert-sm mt-1">Имя может содержать только английские буквы
+                                и цифры.
+                            </div>
+                        </c:if>
+                    </div>
                 </div>
-                <br>
+                    <c:if test="${badName != true}">
+                        <br>
+                    </c:if>
                 <%--Кнопка создания--%>
                 <div class="row">
-                    <button value="${characterClass}" id="creatButton" name="creatButton" class="btn btn-success">Создать</button>
+                    <button value="${characterClass}" id="creatButton" name="creatButton" class="btn btn-success">
+                        Создать
+                    </button>
                 </div>
             </form>
         </div>
