@@ -32,10 +32,13 @@ public class MainMenuServlet extends HttpServlet {
         ServiceLocator locator = ServiceLocator.getServiceLocator();
         UserService<User> userService = locator.getUserService();
         User user = (User) request.getSession().getAttribute("user");
+        log.info(user);
 
         String characterName = request.getParameter("delButton");
         if (characterName != null) {
             locator.getUserService().deleteCharacter(user.getId(), characterName);
+            request.getRequestDispatcher("WEB-INF/view/mainMenu.jsp").forward(request, response);
+            return;
         }
 
         String characterClass = request.getParameter("creatButton");
@@ -48,7 +51,6 @@ public class MainMenuServlet extends HttpServlet {
             request.setAttribute("badName", true);
             request.setAttribute("characterClass", characterClass);
             request.getRequestDispatcher("WEB-INF/view/newCharacterClass.jsp").forward(request, response);
-
         } else {
             if (characterClass != null) {
                 Character character = null;

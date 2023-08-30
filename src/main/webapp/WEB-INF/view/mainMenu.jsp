@@ -81,8 +81,8 @@
                                 <td>${character.health}</td>
                                 <td>${character.characterClass.tittle}</td>
                                 <td align="center">
-                                    <form action="hello" method="get">
-                                        <button id="fightButton" name="fightButton" class="btn btn-success">В бой!
+                                    <form action="battle" method="get">
+                                        <button value="${character.name}" id="fightButton" name="fightButton" class="btn btn-success">В бой!
                                         </button>
                                     </form>
                                 </td>

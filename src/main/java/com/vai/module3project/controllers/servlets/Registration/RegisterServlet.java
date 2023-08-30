@@ -31,12 +31,14 @@ public class RegisterServlet extends HttpServlet {
             log.error("Ошибка при регистрации. Логин содержит не только английские буквы и цифры");
             request.setAttribute("badLogin", true);
             request.getRequestDispatcher("WEB-INF/view/registration.jsp").forward(request, response);
+            return;
         }
 
         if (!userService.containsOnlyLettersAndDigits(password)) {
             log.error("Ошибка при регистрации. пароль содержит не только английские буквы и цифры");
             request.setAttribute("badPassword", true);
             request.getRequestDispatcher("WEB-INF/view/registration.jsp").forward(request, response);
+            return;
         }
 
         if (!password.equals(passwordRepeat)) {

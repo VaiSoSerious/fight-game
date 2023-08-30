@@ -1,4 +1,4 @@
-package com.vai.module3project.controllers.filters;
+package com.vai.module3project.controllers.servlets;
 
 import com.vai.module3project.model.entity.Character;
 import com.vai.module3project.model.entity.Class;
@@ -6,16 +6,14 @@ import com.vai.module3project.model.entity.User;
 import com.vai.module3project.model.services.ServiceLocator;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "InitFilter", value = "/init")
-public class InitFilter extends HttpServlet {
+@WebServlet(name = "InitServlet", value = "/init")
+public class InitServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext appContext = request.getServletContext();

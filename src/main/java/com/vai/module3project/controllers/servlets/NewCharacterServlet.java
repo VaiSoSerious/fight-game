@@ -11,7 +11,6 @@ import java.io.IOException;
 public class NewCharacterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         request.getRequestDispatcher("WEB-INF/view/newCharacter.jsp").forward(request, response);
     }
 }

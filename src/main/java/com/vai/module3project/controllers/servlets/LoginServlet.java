@@ -26,6 +26,7 @@ public class LoginServlet extends HttpServlet {
         if (userId > 0) {
             HttpSession session = request.getSession();
             User user = serviceLocator.getUserService().getEntity(userId).get();
+            log.info(user);
             session.setAttribute("user",user);
             log.info("Был произведен вход в систему как гость.");
             response.sendRedirect("/mainmenu");
