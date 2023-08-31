@@ -20,25 +20,58 @@ public class BattleServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        session.removeAttribute("selectedCharacter");
+        session.removeAttribute("selectedEnemy");
         ServiceLocator locator = ServiceLocator.getServiceLocator();
         User user = (User) session.getAttribute("user");
 
         String selectedCharacterName = request.getParameter("fightButton");
-        Character selectedCharacter = user.getCharacters().stream()
-                .filter(character -> character.getName().equals(selectedCharacterName)).findFirst().get();
+        if (selectedCharacterName != null) {
+            Character selectedCharacter = user.getCharacters().stream()
+                    .filter(character -> character.getName().equals(selectedCharacterName)).findFirst().get();
 
-        Random random = new Random();
-        long randomId = random.nextLong(3) + 1;
+            Random random = new Random();
+            long randomId = random.nextLong(3) + 1;
 
-        for (Character c :locator.getCharacterService().getAllEntities()) {
-            log.info(c.getName());
+            Character selectedEnemy = locator.getCharacterService().getEntity(randomId).get().clone();
+            log.info("Начинается бой, " + selectedCharacter.getName() + " против " + selectedEnemy.getName());
+            session.setAttribute("selectedCharacter", selectedCharacter);
+            session.setAttribute("selectedEnemy", selectedEnemy);
+        }
+        request.getRequestDispatcher("WEB-INF/view/battle.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Character selectedCharacter = (Character) session.getAttribute("selectedCharacter");
+        Character selectedEnemy = (Character) session.getAttribute("selectedEnemy");
+
+        log.info(selectedCharacter);
+
+
+
+        String hit = request.getParameter("hitButton");
+        if (hit != null && hit.equals("hit")) {
+            int selectedCharacterDamage = selectedCharacter.getCharacterClass().getPower();
+            int selectedEnemyHealth = selectedEnemy.getHealth();
+            String selectedCharacterHitText = selectedCharacter.getCharacterClass().getHit();
+            selectedEnemy.setHealth(selectedEnemyHealth - selectedCharacterDamage);
+            request.setAttribute("selectedCharacterDamage", selectedCharacterDamage);
+            request.setAttribute("selectedEnemyHealth", selectedEnemyHealth);
+            request.setAttribute("selectedCharacterHitText", selectedCharacterHitText);
+        }
+        if (selectedEnemy.getHealth() <= 0) {
+            Boolean s = (Boolean) request.getAttribute("enemyLost");
+            log.info(s);
+            selectedEnemy.setHealth(0);
+            selectedCharacter.increasePercents(selectedEnemy.getCharacterClass().getExperience());
+            request.setAttribute("enemyLost", true);
+        } else if (selectedCharacter.getHealth() <= 0) {
+            selectedCharacter.setHealth(0);
+            request.setAttribute("playerLost", true);
         }
 
-        Character selectedEnemy = locator.getCharacterService().getEntity(randomId).get();
-        log.info("Начинается бой, " + selectedCharacter.getName() + " против " + selectedEnemy.getName());
-
-        request.setAttribute("selectedCharacter", selectedCharacter);
-        request.setAttribute("selectedEnemy", selectedEnemy);
         request.getRequestDispatcher("WEB-INF/view/battle.jsp").forward(request, response);
     }
 }

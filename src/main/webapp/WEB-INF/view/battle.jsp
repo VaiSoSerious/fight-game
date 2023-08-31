@@ -1,5 +1,5 @@
-<jsp:useBean id="selectedEnemy" scope="request" type="com.vai.module3project.model.entity.Character"/>
-<jsp:useBean id="selectedCharacter" scope="request" type="com.vai.module3project.model.entity.Character"/>
+<jsp:useBean id="selectedEnemy" scope="session" type="com.vai.module3project.model.entity.Character"/>
+<jsp:useBean id="selectedCharacter" scope="session" type="com.vai.module3project.model.entity.Character"/>
 <%--
   Created by IntelliJ IDEA.
   User: antonvesnin
@@ -64,8 +64,35 @@
             <div>Класс: ${selectedCharacter.characterClass.tittle}</div>
             <div>Жизней: ${selectedCharacter.health}</div>
             <div>Сила: ${selectedCharacter.power}</div>
+            <div>
+                <form method="post" action="battle">
+                    <c:if test="${enemyLost != true}">
+                        <button value="hit" id="hitButton" name="hitButton" class="btn btn-success">
+                            Атака
+                        </button>
+                    </c:if>
+                </form>
+            </div>
         </div>
-        <div class="col-md-4" align="center">Бой:</div>
+        <div class="col-md-4" align="center">
+            Бой: <br>
+            <c:if test="${enemyLost == true}">
+                ${selectedCharacter.name} выиграл!
+                <form method="get" action="mainmenu">
+                    <button value="win" id="victoryMainMenuButton" name="mainMenuButton" class="btn btn-success">
+                        В главное меню
+                    </button>
+                </form>
+            </c:if>
+            <c:if test="${playerLost == true}">
+                ${selectedEnemy.name} выиграл!
+                <form method="get" action="mainmenu">
+                    <button value="lost" id="lostMainMenuButton" name="mainMenuButton" class="btn btn-danger">
+                        В главное меню
+                    </button>
+                </form>
+            </c:if>
+        </div>
         <div class="col-md-4" align="center">
             <div>${selectedEnemy.name}</div>
             <div>Класс: ${selectedEnemy.characterClass.tittle}</div>
@@ -74,5 +101,7 @@
         </div>
     </div>
 </div>
+<c:set var="selectedCharacter" value="${selectedChAaracter}" scope="request"/>
+<c:set var="selectedEnemy" value="${selectedEnemy}" scope="request"/>
 </body>
 </html>

@@ -36,11 +36,11 @@ public class InitServlet extends HttpServlet {
         locator.getUserService().creatNewCharacter(gameMaster.getId(), gameMasterCharacter2);
         locator.getUserService().updateEntity(id, gameMaster);
 
-        Character weakEnemy = locator.getCharacterService().getCharacterFactory().create("Местный забулдыга", 3, 75, false, Class.ENEMY);
+        Character weakEnemy = locator.getCharacterService().getCharacterFactory().create("Петруха", 3, 75, false, Class.LOCALBASTARD);
         locator.getCharacterService().saveEntity(weakEnemy);
-        Character mediumEnemy = locator.getCharacterService().getCharacterFactory().create("Бабка у подъезда", 5, 100, false, Class.ENEMY);
+        Character mediumEnemy = locator.getCharacterService().getCharacterFactory().create("Тамара Петровна", 5, 100, false, Class.GRANDMAATTHEDOOR);
         locator.getCharacterService().saveEntity(mediumEnemy);
-        Character hardEnemy = locator.getCharacterService().getCharacterFactory().create("Качек-гопник", 15, 150, false, Class.ENEMY);
+        Character hardEnemy = locator.getCharacterService().getCharacterFactory().create("Валерий", 15, 150, false, Class.YOBJOCK);
         locator.getCharacterService().saveEntity(hardEnemy);
 
         User guest = locator.getUserService().getUserFactory()

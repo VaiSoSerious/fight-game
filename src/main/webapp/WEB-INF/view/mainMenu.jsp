@@ -66,6 +66,8 @@
                         <thead>
                         <tr class="ui-state-active">
                             <th>Имя</th>
+                            <th>Уровень</th>
+                            <th>%</th>
                             <th>Сила</th>
                             <th>Жизни</th>
                             <th>Класс</th>
@@ -77,8 +79,10 @@
                         <c:forEach var="character" items="${user.characters}">
                             <tr>
                                 <td>${character.name}</td>
-                                <td>${character.power}</td>
-                                <td>${character.health}</td>
+                                <td>${character.level}</td>
+                                <td>${character.percents}</td>
+                                <td>${character.characterClass.power}</td>
+                                <td>${character.characterClass.health}</td>
                                 <td>${character.characterClass.tittle}</td>
                                 <td align="center">
                                     <form action="battle" method="get">

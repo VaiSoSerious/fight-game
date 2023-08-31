@@ -24,6 +24,12 @@ public class MainMenuServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         log.info("Пользователь по имени " + user.getName() + " вошел в меню.");
 
+        String gameFinished = (String) session.getAttribute("mainMenuButton");
+        if (gameFinished != null && (gameFinished.equals("lost") || gameFinished.equals("win"))) {
+            session.removeAttribute("selectedCharacter");
+            session.removeAttribute("selectedEnemy");
+        }
+
         request.getRequestDispatcher("WEB-INF/view/mainMenu.jsp").forward(request, response);
     }
 

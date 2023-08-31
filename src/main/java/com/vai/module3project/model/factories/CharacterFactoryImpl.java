@@ -1,5 +1,6 @@
 package com.vai.module3project.model.factories;
 
+import com.vai.module3project.model.entity.*;
 import com.vai.module3project.model.entity.Character;
 import com.vai.module3project.model.entity.Class;
 import lombok.extern.log4j.Log4j2;
