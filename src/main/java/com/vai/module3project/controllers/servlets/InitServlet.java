@@ -29,18 +29,18 @@ public class InitServlet extends HttpServlet {
         ServiceLocator locator = ServiceLocator.getServiceLocator();
         User gameMaster = locator.getUserService().getUserFactory()
                 .create("gm", "GameMaster", "gm@gmail.com", "pass");
-        Character gameMasterCharacter1 = locator.getCharacterService().getCharacterFactory().create("GameMasterX1", 50, 1000, true, Class.ADMIN);
-        Character gameMasterCharacter2 = locator.getCharacterService().getCharacterFactory().create("GameMasterX10", 500, 10000, true, Class.ADMIN);
+        Character gameMasterCharacter1 = locator.getCharacterService().getCharacterFactory().create("GameMasterX1", 50, true, Class.ADMIN);
+        Character gameMasterCharacter2 = locator.getCharacterService().getCharacterFactory().create("GameMasterX10", 500, true, Class.ADMIN);
         long id = locator.getUserService().saveEntity(gameMaster);
         locator.getUserService().creatNewCharacter(gameMaster.getId(), gameMasterCharacter1);
         locator.getUserService().creatNewCharacter(gameMaster.getId(), gameMasterCharacter2);
         locator.getUserService().updateEntity(id, gameMaster);
 
-        Character weakEnemy = locator.getCharacterService().getCharacterFactory().create("Петруха", 3, 75, false, Class.LOCALBASTARD);
+        Character weakEnemy = locator.getCharacterService().getCharacterFactory().create("Петруха",  75, false, Class.LOCALBASTARD);
         locator.getCharacterService().saveEntity(weakEnemy);
-        Character mediumEnemy = locator.getCharacterService().getCharacterFactory().create("Тамара Петровна", 5, 100, false, Class.GRANDMAATTHEDOOR);
+        Character mediumEnemy = locator.getCharacterService().getCharacterFactory().create("Тамара Петровна", 100, false, Class.GRANDMAATTHEDOOR);
         locator.getCharacterService().saveEntity(mediumEnemy);
-        Character hardEnemy = locator.getCharacterService().getCharacterFactory().create("Валерий", 15, 150, false, Class.YOBJOCK);
+        Character hardEnemy = locator.getCharacterService().getCharacterFactory().create("Валерий",  150, false, Class.YOBJOCK);
         locator.getCharacterService().saveEntity(hardEnemy);
 
         User guest = locator.getUserService().getUserFactory()

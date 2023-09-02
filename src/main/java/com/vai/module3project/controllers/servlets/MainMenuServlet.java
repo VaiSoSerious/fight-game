@@ -62,11 +62,11 @@ public class MainMenuServlet extends HttpServlet {
                 Character character = null;
                 switch (characterClass) {
                     case "backend" -> character = locator.getCharacterService().getCharacterFactory()
-                            .create(newCharacterName, 15, 70, true, Class.BACKEND);
+                            .create(newCharacterName,70, true, Class.BACKEND);
                     case "devops" -> character = locator.getCharacterService().getCharacterFactory()
-                            .create(newCharacterName, 5, 200, true, Class.DEVOPS);
+                            .create(newCharacterName, 200, true, Class.DEVOPS);
                     case "frontend" -> character = locator.getCharacterService().getCharacterFactory()
-                            .create(newCharacterName, 10, 100, true, Class.FRONTEND);
+                            .create(newCharacterName, 100, true, Class.FRONTEND);
                 }
                 locator.getUserService().creatNewCharacter(user.getId(), character);
                 log.info("Создали новый персонаж с именем: " + newCharacterName + " и классом: " + characterClass

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Character implements Cloneable {
     private boolean turn;
     int health;
-    int power;
+//    int power;
     String name;
     Class characterClass;
     int level = 1;

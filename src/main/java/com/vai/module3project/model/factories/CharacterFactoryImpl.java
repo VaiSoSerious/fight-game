@@ -22,10 +22,10 @@ public class CharacterFactoryImpl implements CharacterFactory{
     }
 
     @Override
-    public Character create(String name, int power, int health, boolean turn, Class characterClass) {
+    public Character create(String name, int health, boolean turn, Class characterClass) {
         Character character = new Character();
         character.setName(name);
-        character.setPower(power);
+//        character.setPower(power);
         character.setHealth(health);
         character.setTurn(turn);
         character.setCharacterClass(characterClass);

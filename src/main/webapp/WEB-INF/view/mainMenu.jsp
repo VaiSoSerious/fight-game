@@ -82,7 +82,7 @@
                                 <td>${character.level}</td>
                                 <td>${character.percents}</td>
                                 <td>${character.characterClass.power}</td>
-                                <td>${character.characterClass.health}</td>
+                                <td>${character.health}</td>
                                 <td>${character.characterClass.tittle}</td>
                                 <td align="center">
                                     <form action="battle" method="get">

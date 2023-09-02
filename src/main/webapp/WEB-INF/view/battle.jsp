@@ -48,8 +48,6 @@
             <div class="panel panel-default">
                 <div class="panel-body" align="center">Бой начинается!
                     <br>
-                    ${selectedCharacter.name}
-                    против ${selectedEnemy.name}</div>
             </div>
         </div>
         <div class="col-md-2">
@@ -60,10 +58,10 @@
     <%--Отображение персонажей--%>
     <div class="row">
         <div class="col-md-4" align="center">
-            <div>${selectedCharacter.name}</div>
+            <div><span style="color: darkcyan">${selectedCharacter.name}</span></div>
             <div>Класс: ${selectedCharacter.characterClass.tittle}</div>
             <div>Жизней: ${selectedCharacter.health}</div>
-            <div>Сила: ${selectedCharacter.power}</div>
+            <div>Сила: ${selectedCharacter.characterClass.power}</div>
             <div>
                 <form method="post" action="battle">
                     <c:if test="${enemyLost != true}">
@@ -75,9 +73,17 @@
             </div>
         </div>
         <div class="col-md-4" align="center">
-            Бой: <br>
+            <c:if test="${playerHitText != null}">
+                Бой: <br>
+                <span style="color: darkcyan">${selectedCharacter.name}:</span>
+                ${playerHitText}
+                <br>
+                <span style="color: red">${selectedEnemy.name}:</span>
+                ${enemyHitText}
+                <br>
+            </c:if>
             <c:if test="${enemyLost == true}">
-                ${selectedCharacter.name} выиграл!
+                <span style="color: darkcyan">${selectedCharacter.name}</span> выиграл!
                 <form method="get" action="mainmenu">
                     <button value="win" id="victoryMainMenuButton" name="mainMenuButton" class="btn btn-success">
                         В главное меню
@@ -85,7 +91,7 @@
                 </form>
             </c:if>
             <c:if test="${playerLost == true}">
-                ${selectedEnemy.name} выиграл!
+                <span style="color: red">${selectedEnemy.name}</span> выиграл!
                 <form method="get" action="mainmenu">
                     <button value="lost" id="lostMainMenuButton" name="mainMenuButton" class="btn btn-danger">
                         В главное меню
@@ -94,14 +100,14 @@
             </c:if>
         </div>
         <div class="col-md-4" align="center">
-            <div>${selectedEnemy.name}</div>
+            <div><span style="color: red">${selectedEnemy.name}</span></div>
             <div>Класс: ${selectedEnemy.characterClass.tittle}</div>
             <div>Жизней: ${selectedEnemy.health}</div>
-            <div>Сила: ${selectedEnemy.power}</div>
+            <div>Сила: ${selectedEnemy.characterClass.power}</div>
         </div>
     </div>
 </div>
-<c:set var="selectedCharacter" value="${selectedChAaracter}" scope="request"/>
-<c:set var="selectedEnemy" value="${selectedEnemy}" scope="request"/>
+<%--<c:set var="selectedCharacter" value="${selectedChAaracter}" scope="request"/>--%>
+<%--<c:set var="selectedEnemy" value="${selectedEnemy}" scope="request"/>--%>
 </body>
 </html>
